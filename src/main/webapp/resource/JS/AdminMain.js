@@ -486,7 +486,75 @@ function searchPatientByAny() {
 }
 
 
-function patientAppointmentModal(username) {
-    console.log(username)
+function patientAppointmentModal(patientId) {
     $('.patient_table_row').attr("data-target","#appointPatientModal")
+    $('#InputPatientIdAppointPatient').val(patientId)
+
 }
+
+function setDoctorOnAppointModal() {
+    var date = $('#appointment_date').val();
+    $.ajax({
+        url: "DAO/loadDoctorOnAppointModal.jsp",
+        data: {date: date},
+        success: function (data) {
+            $("#appoint_doctor").html(data);
+        }
+    })
+}
+$(document).ready(function () {
+
+    // Add Patient Appointment
+    $('#appointPatientByAdmin').on('submit', function (event) {
+        event.preventDefault();
+        let form = new FormData(this);
+
+
+        $.ajax({
+            url: "/addAppointmentServlet",
+            type: 'POST',
+            data: form,
+            success: function (data) {
+                if (data.trim() === "success"){
+                    Swal.fire({
+                        position: 'center',
+                        icon: 'success',
+                        title: 'Successful Appointed',
+                        showConfirmButton: false,
+                        timer: 1500
+                     })
+                }
+                else if (data.trim() === "Already appointed"){
+                    Swal.fire({
+                        icon: 'info',
+                        title: 'Already appointed',
+                    })
+                }
+                else if (data.trim() === "No token Available"){
+                    Swal.fire({
+                        icon: 'warning',
+                        title: 'Patient Limit Exists! Try Another Doctor..',
+                    })
+                }
+                else {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'error...',
+                        text: 'Something went wrong!'
+                    })
+                }
+            },
+            error: function () {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'error...',
+                    text: 'Something went wrong!'
+                })
+            },
+            processData: false,
+            contentType: false
+
+        })
+
+    });
+})

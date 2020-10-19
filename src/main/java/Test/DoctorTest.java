@@ -2,6 +2,7 @@ package Test;
 
 import DAO.DoctorDAO;
 import DAO.StaffDAO;
+import Entity.AvailableDoctor_all_info;
 import Entity.Doctor;
 import Helper.ConnectionProvider;
 import Helper.DateAndDayCalculator;
@@ -16,8 +17,10 @@ import java.util.List;
 
 public class DoctorTest {
     public static void main(String[] args) throws ParseException {
-//        DoctorDAO dao = new DoctorDAO(ConnectionProvider.getConnection());
-//
+        DoctorDAO dao = new DoctorDAO(ConnectionProvider.getConnection());
+
+        List<AvailableDoctor_all_info > availableDoctor_all_info = dao.getAllAvailableDoctorFullInfo("2020-10-25");
+        System.out.println(availableDoctor_all_info);
 //        List<Doctor> doctor = dao.getAllDoctor();
 //        System.out.println(doctor);
 
@@ -56,9 +59,11 @@ public class DoctorTest {
         System.out.println(finalDay);
 */
 
-        List<String> strings = new ArrayList<>();
+      /*  List<String> strings = new ArrayList<>();
         strings = DateAndDayCalculator.getSevenDate("2020-10-18");
-        System.out.println(strings);
+        System.out.println(strings);*/
+
+
 
     }
 }

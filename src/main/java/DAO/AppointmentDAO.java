@@ -18,22 +18,26 @@ public class AppointmentDAO implements AppointmentDaoInterface {
 
 
     @Override
-    public boolean addAppointment(Appointment appointment) {
-        boolean f = false;
-        String query = "insert into appointment(Patient_id,data,time,doctor_id) value(?,?,?,?)";
+    public String addAppointment(Appointment appointment) {
+        String s = null;
+        String query = "call hms.AddAppointment(?, ?, ?, ?, ?);";
         try {
-            PreparedStatement pst = connection.prepareStatement(query);
-            pst.setInt(1, appointment.getPatient().getId());
-            pst.setDate(2, (Date) appointment.getDate());
-            pst.setTime(3, appointment.getTime());
-            pst.setInt(4, appointment.getDoctor().getId());
-            pst.executeUpdate();
-            f = true;
+            CallableStatement st = connection.prepareCall(query);
+            st.setInt(1,appointment.getPatient().getId());
+            st.setString(2,appointment.getDate());
+            st.setString(3,appointment.getTime());
+            st.setInt(4,appointment.getDoctor().getId());
+            st.setString(5,"@result");
+            st.execute();
+            ResultSet rst = st.getResultSet();
+            if (rst.next()){
+                s = rst.getString("result");
+            }
 
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return f;
+        return s;
     }
 
     @Override
@@ -47,8 +51,8 @@ public class AppointmentDAO implements AppointmentDaoInterface {
             while (rst.next()){
                 Appointment appointment = new Appointment();
                 appointment.setSsn(rst.getInt("ssn"));
-                appointment.setDate(rst.getDate("date"));
-                appointment.setTime(rst.getTime("time"));
+                appointment.setDate(rst.getString("date"));
+                appointment.setTime(rst.getString("time"));
                 int id = rst.getInt("id");
                 String name = rst.getString("name");
                 String email = rst.getString("email");
@@ -88,8 +92,8 @@ public class AppointmentDAO implements AppointmentDaoInterface {
             ResultSet rst = pst.executeQuery();
             if (rst.next()){
                 appointment.setSsn(rst.getInt("ssn"));
-                appointment.setDate(rst.getDate("date"));
-                appointment.setTime(rst.getTime("time"));
+                appointment.setDate(rst.getString("date"));
+                appointment.setTime(rst.getString("time"));
                 int id = rst.getInt("id");
                 String name = rst.getString("name");
                 String email = rst.getString("email");
@@ -126,8 +130,8 @@ public class AppointmentDAO implements AppointmentDaoInterface {
             ResultSet rst = pst.executeQuery();
             if (rst.next()){
                 appointment.setSsn(rst.getInt("ssn"));
-                appointment.setDate(rst.getDate("date"));
-                appointment.setTime(rst.getTime("time"));
+                appointment.setDate(rst.getString("date"));
+                appointment.setTime(rst.getString("time"));
                 int id = rst.getInt("id");
                 String name = rst.getString("name");
                 String email = rst.getString("email");
@@ -161,8 +165,8 @@ public class AppointmentDAO implements AppointmentDaoInterface {
             String query = "update appointment set date =?, time =?,doctor_id=? where ssn =?";
 
             PreparedStatement pst = this.connection.prepareStatement(query);
-            pst.setDate(1, (Date) appointment.getDate());
-            pst.setTime(2,appointment.getTime());
+            pst.setString(1, appointment.getDate());
+            pst.setString(2,appointment.getTime());
             pst.setInt(3,appointment.getDoctor().getId());
             pst.setInt(4,appointment.getSsn());
             pst.executeUpdate();

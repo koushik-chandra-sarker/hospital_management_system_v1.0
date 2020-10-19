@@ -82,6 +82,7 @@
 <div class="modal animate__animated animate__zoomIn DoctorProfileModal" id="DoctorProfileModal" tabindex="-1"
      aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-fullscreen modal-dialog-centered" id="doc_profile_modal_admin">
+<%--        getDoctorForProfileBYAdmin.jsp--%>
 
     </div>
 </div>

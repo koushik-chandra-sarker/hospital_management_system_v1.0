@@ -5,7 +5,7 @@ import Entity.Appointment;
 import java.util.List;
 
 public interface AppointmentDaoInterface {
-    boolean addAppointment(Appointment appointment);
+    String addAppointment(Appointment appointment);
 
     List<Appointment> getAllAppointment();
 

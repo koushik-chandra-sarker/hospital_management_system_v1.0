@@ -16,6 +16,7 @@ public class AvailableDoctor_all_info {
     private String qualification;
     private String room;
     private int limit;
+    private String date;
     private String start_time;
     private String end_time;
     private String shift;

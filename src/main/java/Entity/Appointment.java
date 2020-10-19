@@ -12,12 +12,12 @@ import java.util.Date;
 @AllArgsConstructor
 public class Appointment {
     private int ssn;
-    private Date date;
-    private Time time;
+    private String date;
+    private String time;
     private Patient patient;
     private Doctor doctor;
 
-    public Appointment(Date date, Time time, Patient patient, Doctor doctor) {
+    public Appointment(String date, String time, Patient patient, Doctor doctor) {
         this.date = date;
         this.time = time;
         this.patient = patient;

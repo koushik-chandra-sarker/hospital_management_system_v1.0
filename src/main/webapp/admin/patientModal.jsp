@@ -104,33 +104,48 @@
 </div>
 
 
+<%--Patient's Appointment modal--%>
 <div class="modal animate__animated animate__backInDown editPatientModal" id="appointPatientModal" tabindex="-1"
      aria-labelledby="appointPatientModal" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
+        <div class="modal-content container-fluid">
             <div class="modal-header">
                 <h5 class="modal-title" id="appointModalLabel">Update Patient</h5>
                 <button type="button" class="btn-close" id="appointPatientModalClose" data-dismiss="modal"
                         aria-label="Close"></button>
             </div>
 
-            <form id="appointPatientByAdmin" action="" method="post" enctype="multipart/form-data">
+            <form id="appointPatientByAdmin">
                 <div class="mb-3">
-                    <label for="InputUsernameAppointPatient" class="form-label">Patient Id</label>
-                    <input required name="appoint_patient_username" type="number" class="form-control"
-                           id="InputUsernameAppointPatient"
+                    <label for="InputPatientIdAppointPatient" class="form-label">Patient Id</label>
+                    <input required name="appoint_patient_id" type="number" class="form-control"
+                           id="InputPatientIdAppointPatient"
                     >
                 </div>
-                <div class="mb-3 patient_datePicker">
+                <div class="row">
+                    <div class="col-10">
+                        <div class="mb-3">
+                            <input
+                                    name="appoint_patient_date"
+                                    type="text" class="form-control"
+                                    placeholder="Select date..." id="appointment_date">
 
-                    <input type="text" class="form-control" id="appointment_date"
-                           placeholder="Search by Appointment date...">
+                            <script type="text/javascript">
+                                $('#appointment_date').dateTimePicker();
 
-                    <script type="text/javascript">
-                        $('#appointment_date').dateTimePicker();
-                    </script>
-
+                            </script>
+                        </div>
+                    </div>
+                    <div class="col-2">
+                        <Button type="button" class="btn btn btn-outline-info form-control" onclick="setDoctorOnAppointModal()"><i class="fas fa-arrow-circle-down"></i></Button>
+                    </div>
                 </div>
+                <div id="appoint_doctor">
+<%--                    See loadDoctorOnAppointModal.jsp--%>
+                </div>
+
+
+
             </form>
         </div>
     </div>

@@ -1,5 +1,6 @@
 package DAO;
 
+import Entity.AvailableDoctor_all_info;
 import Entity.Doctor;
 import Entity.User;
 
@@ -99,6 +100,42 @@ public class DoctorDAO implements DoctorDaoInterface {
         }
 
         return doctors;
+    }
+
+    @Override
+    public List<AvailableDoctor_all_info> getAllAvailableDoctorFullInfo(String date) {
+        List<AvailableDoctor_all_info>  availableDoctor_all_infos = new ArrayList<>();
+        String query = "{call getAvailableDoctor_all_info(?)}";
+
+        try {
+            CallableStatement st = connection.prepareCall(query);
+            st.setString(1,date);
+            st.execute();
+            ResultSet rst = st.getResultSet();
+            while (rst.next()){
+                AvailableDoctor_all_info availableDoctor_all_info = new AvailableDoctor_all_info(
+                        rst.getInt("id"),
+                        rst.getString("name"),
+                        rst.getString("email"),
+                        rst.getString("phone_no"),
+                        rst.getString("speciality"),
+                        rst.getString("qualification"),
+                        rst.getString("room"),
+                        rst.getInt("limit"),
+                        rst.getString("date"),
+                        rst.getString("start_time"),
+                        rst.getString("end_time"),
+                        rst.getString("shift")
+
+                );
+                availableDoctor_all_infos.add(availableDoctor_all_info);
+            }
+        } catch (SQLException throwable) {
+            throwable.printStackTrace();
+        }
+
+
+        return availableDoctor_all_infos;
     }
 
     @Override

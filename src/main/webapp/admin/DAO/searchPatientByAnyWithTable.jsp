@@ -24,7 +24,7 @@
     for (Patient patient : patients) {
 %>
 <tr
-        onclick="patientAppointmentModal(`<%=patient.getUser().getUsername()%>`)"
+        onclick="patientAppointmentModal(`<%=patient.getId()%>`)"
         class="patient_table_row"
         data-toggle="modal"
 >
