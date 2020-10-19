@@ -67,6 +67,23 @@ $(document).ready(function () {
 
     })
     /**############################################################*/
+    // Username Validation for patient
+    $('#InputUsernamePatient').on("keyup", function () {
+        var username = this.value;
+        console.log(username)
+        if (user[0].indexOf(username) === -1) {
+            $('.usernamePatient').removeClass("is-invalid").addClass("is-valid")
+            $('.un_feed_patient').removeClass("content_active")
+
+        } else {
+            $('.usernamePatient').addClass("is-invalid")
+            $('.un_feed_patient').addClass("content_active")
+
+
+        }
+
+    })
+    /**############################################################*/
     // Add Doctor
     $('#addDoctorByAdmin').on('submit', function (event) {
         event.preventDefault();

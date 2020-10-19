@@ -17,7 +17,6 @@ body {
     height: 100%;
 
 }
-
 .wrapper .top-navbar {
     width: 100%;
     height: 65px;
@@ -459,6 +458,11 @@ body {
     height: calc(100vh - 240px) !important;
     /*overflow: scroll;*/
 }
+.patient_card_table {
+    min-height: 365px;
+    height: calc(100vh - 290px) !important;
+    /*overflow: scroll;*/
+}
 
 .doc_header {
     color: #21E6C1;
@@ -642,3 +646,8 @@ bottom: 0;
     border: none;
     color: #21e6c1;
 }
+
+.modal::-webkit-scrollbar {
+    display: none;
+}
+

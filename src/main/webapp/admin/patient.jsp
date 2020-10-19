@@ -42,7 +42,7 @@
             </div>
         </div>
         <div class="col-12 g-3">
-            <div class="d_card position-relative d_card_table doc_card_table ">
+            <div class="d_card position-relative d_card_table patient_card_table ">
                 <div class="table_container">
                     <div class="table_main">
                         <table>

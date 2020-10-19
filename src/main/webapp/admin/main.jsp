@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Side Navigaton Bar</title>
+    <title>Admin Panel</title>
     <link rel="stylesheet" href="../resource/fontawesome/css/all.css">
     <link href="https://fonts.googleapis.com/css2?family=Mulish&display=swap" rel="stylesheet">
 
@@ -38,7 +38,7 @@
                         <span class="icon">
                             <i class="fas fa-home"></i>
                         </span>
-                    <span>Home</span>
+                    <span>Admin</span>
                 </a>
             </div>
             <div class="right-info">

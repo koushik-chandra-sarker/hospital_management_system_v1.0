@@ -17,9 +17,9 @@
                             <div class="mb-3">
                                 <label for="InputUsernamePatient" class="form-label ">Username</label>
                                 <input name="patient_username" type="text" required
-                                       class="form-control usernameStaff is-invalid"
+                                       class="form-control usernamePatient is-invalid"
                                        id="InputUsernamePatient" aria-describedby="emailHelp">
-                                <div id="validationServerUsernameFeedback" class="invalid-feedback un_feed_staff"
+                                <div id="validationServerUsernameFeedback" class="invalid-feedback un_feed_patient"
                                      style="display: none">
                                     Username already exists.
                                 </div>
