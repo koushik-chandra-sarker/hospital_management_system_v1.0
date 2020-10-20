@@ -1,8 +1,8 @@
-
 <%@ page import="Helper.ConnectionProvider" %>
 <%@ page import="java.util.List" %>
 <%@ page import="DAO.PatientDAO" %>
 <%@ page import="Entity.Patient" %>
+
 
 <%
     PatientDAO patientDAO = new PatientDAO(ConnectionProvider.getConnection());
@@ -10,9 +10,11 @@
     for (Patient patient : patients) {
 %>
 <tr
-    onclick="patientAppointmentModal(`<%=patient.getId()%>`)"
-    class="patient_table_row"
-    data-toggle="modal"
+        onclick="AppointmentDetailsModal(<%=patient.getId()%>)"
+        class="patient_table_row"
+        data-toggle="modal"
+        data-placement="bottom" title="Click to give or show Appointment"
+
 >
 
     <td data-label="Id"><%=patient.getId()%>

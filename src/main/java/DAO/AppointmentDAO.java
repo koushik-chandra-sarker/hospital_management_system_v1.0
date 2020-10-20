@@ -3,6 +3,7 @@ package DAO;
 import Entity.Appointment;
 import Entity.Doctor;
 import Entity.Patient;
+import Entity.User;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -109,6 +110,56 @@ public class AppointmentDAO implements AppointmentDaoInterface {
                         rst.getString("phone_no"),
                         rst.getString("speciality"),
                         rst.getString("qualification")
+                );
+                appointment.setPatient(patient);
+                appointment.setDoctor(doctor);
+            }
+
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+        return appointment;
+    }
+
+    @Override
+    public Appointment getAppointmentByPatientId(int patientId) {
+        Appointment appointment = new Appointment();
+        String query = "select appointment.*,patient.name as pname, patient.email as pemail, patient.phone_no as pphone_no,\n" +
+                "patient.address as paddress, patient.age as page, patient.sex as psex, patient.username as pusername, \n" +
+                "doctor.name as dname,doctor.email as demail, doctor.phone_no as dphone_no,\n" +
+                "doctor.qualification as dqualification, doctor.speciality as dspeciality, doctor.username as dusername\n" +
+                " from appointment \n" +
+                " inner join patient on appointment.Patient_id=patient.id \n" +
+                " inner join doctor on appointment.doctor_id=doctor.id \n" +
+                " where appointment.patient_id = ?";
+        try {
+            PreparedStatement pst = connection.prepareStatement(query);
+            pst.setInt(1,patientId);
+            ResultSet rst = pst.executeQuery();
+            if (rst.next()){
+                appointment.setSsn(rst.getInt("ssn"));
+                appointment.setDate(rst.getString("date"));
+                appointment.setTime(rst.getString("time"));
+                int id = rst.getInt("patient_id");
+                String name = rst.getString("pname");
+                String email = rst.getString("pemail");
+                String phone_no = rst.getString("pphone_no");
+                String address = rst.getString("paddress");
+                int age = rst.getInt("page");
+                String sex = rst.getString("psex");
+                User puser = new User();
+                puser.setUsername( rst.getString("pusername"));
+                Patient patient = new Patient(id,name,email,phone_no,address,age,sex,puser);
+                User duser = new User();
+                duser.setUsername( rst.getString("dusername"));
+                Doctor doctor = new Doctor(
+                        rst.getInt("doctor_id"),
+                        rst.getString("dname"),
+                        rst.getString("demail"),
+                        rst.getString("dphone_no"),
+                        rst.getString("dspeciality"),
+                        rst.getString("dqualification"),
+                        duser
                 );
                 appointment.setPatient(patient);
                 appointment.setDoctor(doctor);

@@ -627,7 +627,7 @@ body {
 }
 .doc_avail_card .d_card .avail_footer {
     width: 100%;
-bottom: 0;
+    bottom: 0;
 }
 .doc_avail_card .d_card .avail_footer h5{
    font-size: 14px;
@@ -651,3 +651,21 @@ bottom: 0;
     display: none;
 }
 
+.DetailsPatientModal{
+    background: #071E3D;
+    color: #21e6c1;
+}
+
+.showAppointment_card h6{
+    font-size: 14px;
+}
+.showAppointment_card p{
+    font-size: 12px;
+}
+.showAppointment_card .d_card{
+    height: auto;
+    margin-bottom: 20px;
+}
+.container::-webkit-scrollbar {
+    display: none;
+}

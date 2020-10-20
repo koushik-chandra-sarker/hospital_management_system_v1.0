@@ -11,6 +11,8 @@ public interface AppointmentDaoInterface {
 
     Appointment getAppointmentById(int id);
 
+    Appointment getAppointmentByPatientId(int id);
+
     Appointment getAppointmentByUsername(String username);
 
     boolean updateAppointment(Appointment appointment);

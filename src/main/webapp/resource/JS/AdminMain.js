@@ -501,13 +501,30 @@ function searchPatientByAny() {
     }
 
 }
+var patientId;
+function AppointmentDetailsModal(pId) {
+    patientId = pId
+    $('.patient_table_row').attr("data-target","#appointDetailsPatientModal")
+}
 
-
-function patientAppointmentModal(patientId) {
-    $('.patient_table_row').attr("data-target","#appointPatientModal")
+function patientAppointmentModal() {
+    $('#giveAppointmentBtn').attr("data-target","#appointPatientModal").attr("data-dismiss","modal")
     $('#InputPatientIdAppointPatient').val(patientId)
 
 }
+function seeAppointmentModal() {
+    $('#SeeAppointmentDetailsBtn').attr("data-target","#seeAppointDetailsModal").attr("data-dismiss","modal")
+    $.ajax({
+        url: "DAO/getAppointmentDetails.jsp",
+        data: {patient_id: patientId},
+        success: function (data) {
+            $("#appointmentDetailsContent").html(data);
+        }
+    })
+
+}
+
+
 
 function setDoctorOnAppointModal() {
     var date = $('#appointment_date').val();

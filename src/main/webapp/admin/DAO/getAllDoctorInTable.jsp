@@ -12,6 +12,7 @@
         onclick="openDocProfileModal(<%=doctor.getId()%>)"
         class="doc_table_row"
         data-toggle="modal"
+        data-placement="bottom" title="Click to View Profile"
 
 >
     <td data-label="Id"><%=doctor.getId()%>

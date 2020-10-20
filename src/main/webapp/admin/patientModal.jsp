@@ -56,17 +56,20 @@
                             <div class="mb-3">
                                 <label class="form-label col-12">Gender</label>
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="patient_gender" id="patientSexRadio1"
+                                    <input class="form-check-input" type="radio" name="patient_gender"
+                                           id="patientSexRadio1"
                                            value="MALE">
                                     <label class="form-check-label" for="patientSexRadio1">Male</label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="patient_gender" id="patientSexRadio2"
+                                    <input class="form-check-input" type="radio" name="patient_gender"
+                                           id="patientSexRadio2"
                                            value="FEMALE">
                                     <label class="form-check-label" for="patientSexRadio2">Female</label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="patient_gender" id="patientSexRadio3"
+                                    <input class="form-check-input" type="radio" name="patient_gender"
+                                           id="patientSexRadio3"
                                            value="OTHER">
                                     <label class="form-check-label" for="patientSexRadio3">Other</label>
                                 </div>
@@ -91,7 +94,7 @@
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="editModalLabel">Update Patient</h5>
+                <h5 class="modal-title" id="editModalLabel">Give Appointment</h5>
                 <button type="button" class="btn-close" id="editPatientModalClose" data-dismiss="modal"
                         aria-label="Close"></button>
             </div>
@@ -104,8 +107,43 @@
 </div>
 
 
+<%--Show APPOINTMENT DETAILS--%>
+<div class="modal animate__animated animate__zoomIn " id="appointDetailsPatientModal" tabindex="-1"
+     aria-labelledby="appointDetailsPatientModal" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content container-fluid DetailsPatientModal">
+            <div class="modal-header">
+                <h5 class="modal-title" id="appointDetailsModalLabel">Choose one</h5>
+                <button type="button" class="btn-close" id="appointDetailsPatientModalClose" data-dismiss="modal"
+                        aria-label="Close"></button>
+            </div>
+            <div class="row">
+                <div class="col-6 g-4 mb-4">
+                    <button
+                            onmousedown="seeAppointmentModal()"
+                            data-toggle="modal"
+                            type="button" class="btn btn-outline-info form-control" id="SeeAppointmentDetailsBtn"
+                            aria-label="SeeAppointmentDetailsBtn">See Appointment Details
+                    </button>
+                </div>
+                <div class="col-6 g-4 mb-4">
+                    <button
+                            onmousedown="patientAppointmentModal()"
+                            data-toggle="modal"
+                            type="button" class="btn btn-outline-danger form-control" id="giveAppointmentBtn"
+                            aria-label="giveAppointmentBtn">Give Appointment
+                    </button>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+</div>
+
+
 <%--Patient's Appointment modal--%>
-<div class="modal animate__animated animate__backInDown editPatientModal" id="appointPatientModal" tabindex="-1"
+<div class="modal animate__animated animate__backInDown appointPatientModal" id="appointPatientModal" tabindex="-1"
      aria-labelledby="appointPatientModal" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content container-fluid">
@@ -137,16 +175,48 @@
                         </div>
                     </div>
                     <div class="col-2">
-                        <Button type="button" class="btn btn btn-outline-info form-control" onclick="setDoctorOnAppointModal()"><i class="fas fa-arrow-circle-down"></i></Button>
+                        <Button
+                                type="button" class="btn btn btn-outline-info form-control"
+                                onclick="setDoctorOnAppointModal()"><i class="fas fa-arrow-circle-down"></i></Button>
                     </div>
                 </div>
                 <div id="appoint_doctor">
-<%--                    See loadDoctorOnAppointModal.jsp--%>
+                    <%--                    See loadDoctorOnAppointModal.jsp--%>
                 </div>
 
 
-
             </form>
+        </div>
+    </div>
+</div>
+
+
+<%--Patient's Appointment details modal--%>
+<div class="modal animate__animated animate__backInDown seeAppointDetailsModal" id="seeAppointDetailsModal"
+     tabindex="-1"
+     aria-labelledby="seeAppointDetailsModal" aria-hidden="true">
+    <div class="modal-dialog modal-fullscreen modal-dialog-centered">
+        <div class="modal-content DoctorProfileModalContent">
+            <div class="modal-header">
+                <div class="d-flex">
+                    <h5 class="modal-title pl-3 pt-2" id="docProfileModalLabel">Appointment Details</h5>
+                </div>
+                <Button
+
+                        class="btn-close btn doc_add_btn" id="DocProfileModalClose" data-dismiss="modal"
+                        aria-label="Close"
+                        type="button"
+
+                >
+                    <i class="fas fa-times"></i>
+                </Button>
+            </div>
+
+             <div id="appointmentDetailsContent" class="container " style="overflow: scroll">
+
+            </div>
+
+
         </div>
     </div>
 </div>
