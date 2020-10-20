@@ -26,14 +26,14 @@ CREATE TABLE `appointment` (
   `ssn` int NOT NULL AUTO_INCREMENT,
   `Patient_id` int NOT NULL,
   `date` date NOT NULL,
-  `time` time DEFAULT NULL,
+  `time` varchar(10) DEFAULT NULL,
   `doctor_id` int NOT NULL,
   PRIMARY KEY (`ssn`),
   KEY `fk_Appointment_Patient1_idx` (`Patient_id`),
   KEY `fk_Appointment_doctor1_idx` (`doctor_id`),
   CONSTRAINT `fk_Appointment_doctor1` FOREIGN KEY (`doctor_id`) REFERENCES `doctor` (`id`),
   CONSTRAINT `fk_Appointment_Patient1` FOREIGN KEY (`Patient_id`) REFERENCES `patient` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -42,6 +42,7 @@ CREATE TABLE `appointment` (
 
 LOCK TABLES `appointment` WRITE;
 /*!40000 ALTER TABLE `appointment` DISABLE KEYS */;
+INSERT INTO `appointment` VALUES (7,30300006,'2020-10-20','2:30 PM',10100001),(8,30300004,'2020-10-20','2:30 PM',10100001),(9,30300006,'2020-10-21','10:00 AM',10100002),(10,30300010,'2020-10-20','2:30 PM',10100001);
 /*!40000 ALTER TABLE `appointment` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -65,7 +66,7 @@ CREATE TABLE `doctor` (
   UNIQUE KEY `doctor_phone_no_uindex` (`phone_no`),
   KEY `fk_doctor_user1_idx` (`username`),
   CONSTRAINT `fk_doctor_user1` FOREIGN KEY (`username`) REFERENCES `user` (`username`) ON DELETE SET NULL ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=10100013 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=10100014 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -74,7 +75,7 @@ CREATE TABLE `doctor` (
 
 LOCK TABLES `doctor` WRITE;
 /*!40000 ALTER TABLE `doctor` DISABLE KEYS */;
-INSERT INTO `doctor` VALUES (10100001,'Koushik Sarker','koushiksk.ks@gmail.com',170000000,'doctor1','doctor1','speciality1'),(10100002,'doctor2.0','doctor2@gmail.com',170000001,'doctor2','doctor2','speciality2'),(10100004,'doctor4','doctor4s@gmail.com',1700000004,'doctor4','doctor4','speciality4'),(10100005,'doctor5','doctor5@gmail.com',1700000005,'doctor5','doctor5','speciality5'),(10100006,'doctor6','doctor6@gmail.com',1700000006,'doctor6','doctor6','speciality6'),(10100012,'doctor12','doctor12@gmail.com',1700000012,'doctor12','doctor12','speciality12');
+INSERT INTO `doctor` VALUES (10100001,'Koushik Sarker','koushiksk.ks@gmail.com',170000000,'doctor1','doctor1','speciality1'),(10100002,'doctor2.0','doctor2@gmail.com',170000001,'doctor2','doctor2','speciality2'),(10100004,'doctor4','doctor4s@gmail.com',1700000004,'doctor4','doctor4','speciality4'),(10100005,'doctor5','doctor5@gmail.com',1700000005,'doctor5','doctor5','speciality5'),(10100006,'doctor6','doctor6@gmail.com',1700000006,'doctor6','doctor6','speciality6'),(10100012,'doctor12','doctor12@gmail.com',1700000012,'doctor12','doctor12','speciality12'),(10100013,'doctor23','doctor23@gmail.com',170000005,'doctor23','doctor23','speciality1');
 /*!40000 ALTER TABLE `doctor` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -97,7 +98,7 @@ CREATE TABLE `doctor_availability` (
   PRIMARY KEY (`ssn`),
   KEY `fk_doctor_availablity_doctor1_idx` (`doctor_id`),
   CONSTRAINT `fk_doctor_availablity_doctor1` FOREIGN KEY (`doctor_id`) REFERENCES `doctor` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -106,7 +107,7 @@ CREATE TABLE `doctor_availability` (
 
 LOCK TABLES `doctor_availability` WRITE;
 /*!40000 ALTER TABLE `doctor_availability` DISABLE KEYS */;
-INSERT INTO `doctor_availability` VALUES (7,'Sunday','9:08 AM','12:30 PM','Shift1',30,'R101',10100001),(8,'Tuesday','2:30 PM','5:30 PM','Shift1',20,'R101',10100001);
+INSERT INTO `doctor_availability` VALUES (7,'Sunday','9:08 AM','12:30 PM','Shift1',30,'R101',10100001),(8,'Tuesday','2:30 PM','5:30 PM','Shift1',20,'R101',10100001),(9,'Wednesday','10:00 AM','2:00 PM','Shift1',25,'room',10100002),(10,'Saturday','3:00 PM','6:50 PM','Shift2',35,'d111',10100002);
 /*!40000 ALTER TABLE `doctor_availability` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -131,7 +132,7 @@ CREATE TABLE `patient` (
   UNIQUE KEY `phone_no_UNIQUE` (`phone_no`),
   KEY `fk_Patient_user1_idx` (`username`),
   CONSTRAINT `fk_Patient_user1` FOREIGN KEY (`username`) REFERENCES `user` (`username`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=30300006 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=30300011 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -140,7 +141,7 @@ CREATE TABLE `patient` (
 
 LOCK TABLES `patient` WRITE;
 /*!40000 ALTER TABLE `patient` DISABLE KEYS */;
-INSERT INTO `patient` VALUES (30300004,'patient3','patient3@gmail.com','0170000018','sad',30,'FEMALE','patient3');
+INSERT INTO `patient` VALUES (30300004,'patient3','patient3@gmail.com','0170000018','sad',30,'FEMALE','patient3'),(30300006,'patient1','patient1@gmail.com','0170000015','saa',22,'MALE','patient1'),(30300007,'patient2','patient2@gmail.com','0170000014','sad',15,'FEMALE','patient2'),(30300009,'patient4','patient4@gmail.com','0170000012','address 4',13,'FEMALE','patient4'),(30300010,'patient5','patient5@gmail.com','0170000145','01622774014',15,'MALE','patient5');
 /*!40000 ALTER TABLE `patient` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -159,7 +160,7 @@ CREATE TABLE `patient_limit` (
   PRIMARY KEY (`ssn`),
   KEY `patient_limit_doctor_availability_ssn_fk` (`doctor_avail_ssn`),
   CONSTRAINT `patient_limit_doctor_availability_ssn_fk` FOREIGN KEY (`doctor_avail_ssn`) REFERENCES `doctor_availability` (`ssn`) ON DELETE SET NULL ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=182 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=184 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -168,7 +169,7 @@ CREATE TABLE `patient_limit` (
 
 LOCK TABLES `patient_limit` WRITE;
 /*!40000 ALTER TABLE `patient_limit` DISABLE KEYS */;
-INSERT INTO `patient_limit` VALUES (180,'2020-10-20',8,20),(181,'2020-10-25',7,30);
+INSERT INTO `patient_limit` VALUES (180,'2020-10-20',8,11),(181,'2020-10-25',7,30),(182,'2020-10-21',9,24),(183,'2020-10-24',10,35);
 /*!40000 ALTER TABLE `patient_limit` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -231,7 +232,7 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES ('doctor1','doctor1','DOCTOR','koushiksk.ks@gmail.com',1),('doctor10','doctor10','DOCTOR','doctor10@gmail.com',1),('doctor11','doctor111','DOCTOR','doctor11@gmail.com',1),('doctor12','doctor12','DOCTOR','doctor12@gmail.com',1),('doctor2','doctor2','DOCTOR','doctor2@gmail.com',1),('doctor3','doctor3','DOCTOR','doctor3@gmail.com',1),('doctor4','doctor4','DOCTOR','doctor4s@gmail.com',1),('doctor5','doctor5','DOCTOR','doctor5@gmail.com',1),('doctor6','doctor6','DOCTOR','doctor6@gmail.com',1),('doctor7','doctor7','DOCTOR','doctor7@gmail.com',1),('doctor8','doctor8','DOCTOR','doctor8@gmail.com',1),('doctor9','doctor9','DOCTOR','doctor9@gmail.com',1),('patient3','patient3','PATIENT','patient3@gmail.com',1),('staff3','staff3','STAFF','staff3@gmail.com',1),('staff6','staff6','STAFF','staff6@gmail.com',1);
+INSERT INTO `user` VALUES ('doctor1','doctor1','DOCTOR','koushiksk.ks@gmail.com',1),('doctor10','doctor10','DOCTOR','doctor10@gmail.com',1),('doctor11','doctor111','DOCTOR','doctor11@gmail.com',1),('doctor12','doctor12','DOCTOR','doctor12@gmail.com',1),('doctor2','doctor2','DOCTOR','doctor2@gmail.com',1),('doctor23','doctor23','DOCTOR','doctor23@gmail.com',1),('doctor3','doctor3','DOCTOR','doctor3@gmail.com',1),('doctor4','doctor4','DOCTOR','doctor4s@gmail.com',1),('doctor5','doctor5','DOCTOR','doctor5@gmail.com',1),('doctor6','doctor6','DOCTOR','doctor6@gmail.com',1),('doctor7','doctor7','DOCTOR','doctor7@gmail.com',1),('doctor8','doctor8','DOCTOR','doctor8@gmail.com',1),('doctor9','doctor9','DOCTOR','doctor9@gmail.com',1),('patient1','patient1','PATIENT','patient1@gmail.com',1),('patient2','patient2','PATIENT','patient2@gmail.com',1),('patient3','patient3','PATIENT','patient3@gmail.com',1),('patient4','patient4','PATIENT','patient4@gmail.com',1),('patient5','patient5','PATIENT','patient5@gmail.com',1),('staff3','staff3','STAFF','staff3@gmail.com',1),('staff6','staff6','STAFF','staff6@gmail.com',1);
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -244,4 +245,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-10-19 13:24:04
+-- Dump completed on 2020-10-20 19:36:11
