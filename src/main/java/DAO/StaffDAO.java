@@ -144,7 +144,22 @@ public class StaffDAO {
         }
         return staff;
     }
+    public int staffCount() {
 
+        int totalStaff = 0;
+        String query = "SELECT COUNT(id) AS totalStaff FROM staff";
+        try {
+            Statement st = connection.createStatement();
+            ResultSet rst = st.executeQuery(query);
+            if (rst.next()){
+                totalStaff = rst.getInt("totalStaff");
+            }
+
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+        return totalStaff;
+    }
 
     public boolean updateStaff(Staff staff){
         boolean f= false;

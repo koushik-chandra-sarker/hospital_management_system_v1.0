@@ -170,6 +170,24 @@ public class DoctorDAO implements DoctorDaoInterface {
     }
 
     @Override
+    public int doctorCount() {
+
+        int totalDoctor = 0;
+        String query = "SELECT COUNT(id) AS totalDoctor FROM doctor";
+        try {
+            Statement st = connection.createStatement();
+            ResultSet rst = st.executeQuery(query);
+            if (rst.next()){
+               totalDoctor = rst.getInt("totalDoctor");
+            }
+
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+        return totalDoctor;
+    }
+
+    @Override
     public Doctor getDoctorByUsername(String UName) {
         Doctor doctor = null;
         String query = "select doctor.*,user.password,user.role,user.active from doctor inner join user on doctor.username=user.username where doctor.username=?";

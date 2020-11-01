@@ -311,6 +311,47 @@ $(document).ready(function () {
 
     });
 
+    /**############################################################*/
+    /*update Patient*/
+    $('#editPatientByAdmin').on('submit', function (event) {
+        event.preventDefault();
+        let form = new FormData(this);
+        $.ajax({
+            url: "/updatePatientServlet",
+            type: 'POST',
+            data: form,
+            success: function (data) {
+                if (data.trim() === 'true') {
+                    getAllPatient()
+                    Swal.fire({
+                        position: 'center',
+                        icon: 'success',
+                        title: 'Update Successful',
+                        showConfirmButton: false,
+                        timer: 2000
+                    })
+                } else {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: 'Something went wrong!'
+                    })
+                }
+            },
+            error: function () {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'error...',
+                    text: 'Something went wrong!'
+                })
+            },
+            processData: false,
+            contentType: false
+
+        })
+
+    });
+
 
 })
 
@@ -522,6 +563,16 @@ function seeAppointmentModal() {
         }
     })
 
+}
+
+function setDataOnUpdatePatientModal(id) {
+    $.ajax({
+        url: "DAO/setDataOnUpdatePatientModal.jsp",
+        data: {patientId: id},
+        success: function (data) {
+            $("#editPatientByAdmin").html(data);
+        }
+    })
 }
 
 

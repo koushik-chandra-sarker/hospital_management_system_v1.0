@@ -74,12 +74,12 @@ public class PatientDAO implements PatientDaoInterface {
     @Override
     public Patient getPatientById(int Pid) {
         Patient patient = null;
-        String query = "select patient.*,user.password,user.role,user.active from patient inner join user on patient.username=user.username where patient.id=?";
+        String query = "select patient.*,user.password,user.role,user.active from patient inner join user on patient.username=user.username where patient.id = ?";
 
         try {
             PreparedStatement st = connection.prepareStatement(query);
             st.setInt(1,Pid);
-            ResultSet rst = st.executeQuery(query);
+            ResultSet rst = st.executeQuery();
             if (rst.next()){
                 int id = rst.getInt("id");
                 String name = rst.getString("name");
@@ -169,8 +169,24 @@ public class PatientDAO implements PatientDaoInterface {
         catch (SQLException e){
             e.printStackTrace();
         }
-
         return patients;
+    }
+
+    @Override
+    public int todayPatientCount() {
+        int totalPatientToday = 0;
+        String query = "SELECT COUNT(patient.id) AS totalPatientToday FROM patient inner join appointment a on patient.id = a.Patient_id where date = date(now())";
+        try {
+            Statement st = connection.createStatement();
+            ResultSet rst = st.executeQuery(query);
+            if (rst.next()){
+                totalPatientToday = rst.getInt("totalPatientToday");
+            }
+
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+        return totalPatientToday;
     }
 
     @Override

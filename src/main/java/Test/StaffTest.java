@@ -6,6 +6,7 @@ import Helper.ConnectionProvider;
 public class StaffTest {
     public static void main(String[] args) {
         StaffDAO dao = new StaffDAO(ConnectionProvider.getConnection());
+        System.out.println(dao.staffCount());
 
        /* User user = new User();
         user.setUsername("koushik");

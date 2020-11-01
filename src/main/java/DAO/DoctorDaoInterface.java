@@ -15,6 +15,8 @@ public interface DoctorDaoInterface {
 
     Doctor getDoctorById(int id);
 
+    int doctorCount();
+
     Doctor getDoctorByUsername(String username);
 
 

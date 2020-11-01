@@ -18,13 +18,17 @@ public class PatientTest {
 
        /* List<Patient> patients = dao.searchPatientLimitByAny("male");
         System.out.println(patients);*/
-        Patient patient = new Patient();
+        /*Patient patient = new Patient();
         patient.setId(30300004);
         Doctor doctor = new Doctor();
         doctor.setId(10100001);
         Appointment ap = new Appointment("2020-10-20","2:30 PM",patient,doctor);
         String s = appointmentDAO.addAppointment(ap);
-        System.out.println(s);
+        System.out.println(s);*/
+
+        /*Patient patient = dao.getPatientById(30300004);
+        System.out.println(patient);*/
+        System.out.println(dao.todayPatientCount());
 
     }
 }

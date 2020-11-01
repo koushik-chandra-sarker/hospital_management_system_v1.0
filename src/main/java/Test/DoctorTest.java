@@ -19,8 +19,9 @@ public class DoctorTest {
     public static void main(String[] args) throws ParseException {
         DoctorDAO dao = new DoctorDAO(ConnectionProvider.getConnection());
 
-        List<AvailableDoctor_all_info > availableDoctor_all_info = dao.getAllAvailableDoctorFullInfo("2020-10-25");
-        System.out.println(availableDoctor_all_info);
+      /*  List<AvailableDoctor_all_info > availableDoctor_all_info = dao.getAllAvailableDoctorFullInfo("2020-10-25");
+        System.out.println(availableDoctor_all_info);*/
+//        System.out.println(dao.doctorCount());
 //        List<Doctor> doctor = dao.getAllDoctor();
 //        System.out.println(doctor);
 
@@ -62,7 +63,9 @@ public class DoctorTest {
       /*  List<String> strings = new ArrayList<>();
         strings = DateAndDayCalculator.getSevenDate("2020-10-18");
         System.out.println(strings);*/
-
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+        String formatted = df.format(new Date());
+        System.out.println(formatted);
 
 
     }

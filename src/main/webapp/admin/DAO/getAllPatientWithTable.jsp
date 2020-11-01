@@ -35,6 +35,7 @@
         <div class="row">
             <div class="col-sm-6 col-lg-12 col-xl-6 g-2 d-flex justify-content-center">
                 <Button
+                        onclick="setDataOnUpdatePatientModal(<%=patient.getId()%>)"
                         class="btn doc_add_btn"
                         aria-label="Edit Doctor"
                         data-toggle="modal"

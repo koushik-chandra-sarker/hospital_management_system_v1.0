@@ -88,19 +88,19 @@
     </div>
 </div>
 
-
+<%--Edit Patient DETAILS--%>
 <div class="modal animate__animated animate__backInDown editPatientModal" id="editPatientModal" tabindex="-1"
      aria-labelledby="editPatientModal" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="editModalLabel">Give Appointment</h5>
+                <h5 class="modal-title" id="editModalLabel">Edit Patient Info</h5>
                 <button type="button" class="btn-close" id="editPatientModalClose" data-dismiss="modal"
                         aria-label="Close"></button>
             </div>
 
-            <form id="editPatientByAdmin" action="" method="post" enctype="multipart/form-data">
-
+            <form id="editPatientByAdmin" method="post" action="updateStaffServlet" enctype="multipart/form-data">
+                <%--                    See setDataOnUpdatePatientModal.jsp--%>
             </form>
         </div>
     </div>

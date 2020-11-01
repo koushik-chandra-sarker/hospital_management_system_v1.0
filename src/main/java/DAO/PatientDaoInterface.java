@@ -16,7 +16,7 @@ public interface PatientDaoInterface {
     Patient getPatientByUsername(String username);
 
     List<Patient> searchPatientLimitByAny(String searchParam);
-
+    int todayPatientCount();
     boolean updatePatient(Patient patient);
 
     boolean deletePatientById(int id);
